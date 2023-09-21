@@ -10,7 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-ServiceConfigurations.Configuration(builder.Services, builder.Configuration);
+
+builder.Services.Configuration(builder.Configuration);
+
+//ServiceConfigurations.Configuration(builder.Services, builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
