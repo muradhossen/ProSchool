@@ -1,4 +1,6 @@
 using Configuration;
+using Database;
+using Microsoft.EntityFrameworkCore;
 using Model.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,9 +15,17 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.Configuration(builder.Configuration);
 
+
 //ServiceConfigurations.Configuration(builder.Services, builder.Configuration);
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Model.CreateDtos;
 using Model.Entities;
+using Model.ReturnDtos;
 using Model.ReturnDtos.Setup;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace Model.AutoMapper
         {
             CreateMap<ProductCreateDto, Product>();
             CreateMap<Product, ProductReturnDto>();
+
+            CreateMap<Student,StudentCreateDto>();
+            CreateMap<Student, StudentReturnDto>();
         }
     }
 }

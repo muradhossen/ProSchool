@@ -72,6 +72,19 @@ namespace Database
               .HasMaxLength(70);
             #endregion
 
+            #region Added Seed data
+            modelBuilder.Entity<Class>()
+                .HasData(SeedData.GetClassesSeedData());
+
+            modelBuilder.Entity<Student>()
+                 .HasData(SeedData.GetStudentsSeedData());
+
+            modelBuilder.Entity<Teacher>()
+                .HasData(SeedData.GetTeachersSeedData());
+
+            modelBuilder.Entity<ClassTeacher>()
+                 .HasData(SeedData.GetClassTeachersSeedData());
+            #endregion
         }
     }
 }
