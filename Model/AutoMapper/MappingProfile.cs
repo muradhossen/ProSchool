@@ -20,6 +20,9 @@ namespace Model.AutoMapper
 
             CreateMap<Student,StudentCreateDto>();
             CreateMap<Student, StudentReturnDto>();
+
+            CreateMap<Class, ClassCreateDto>();
+            CreateMap<Class, ClassReturnDto>();
         }
     }
 }

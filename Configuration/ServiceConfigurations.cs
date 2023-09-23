@@ -31,6 +31,9 @@ namespace Configuration
 
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<IStudentManager, StudentManager>();
+
+            services.AddTransient<IClassRepository, ClassRepository>();
+            services.AddTransient<IClassManager, ClassManager>();
         }
 
     }

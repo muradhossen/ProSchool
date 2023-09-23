@@ -45,8 +45,13 @@
 // });
  
 
-
+//table
 $(document).ready(function () {
+    getStudens();
+});
+ 
+
+function getStudens() {
     $.ajax({
         url: 'https://localhost:7203/api/students/all',
         method: 'GET',
@@ -64,10 +69,11 @@ $(document).ready(function () {
                     { data: 'studentId' },
                     { data: 'studentName' },
                     { data: 'classId' },
-                    {data : 'className'}
-
-                    
+                    {data : 'className'}                    
                 ],
+                language : {
+                            "loadingRecords": "Please wait - loading..."
+                            },
                 pageLength: 5,
                 lengthMenu: [5, 10, 25, 50],
                 // processing: true,
@@ -79,4 +85,22 @@ $(document).ready(function () {
             console.error(xhr.responseText);
         }
     });
-});
+}
+
+
+function applyFilter(filterCriteria) {
+
+    var table = $('#studentTable').DataTable();
+
+    table.column(2)
+    .search(filterCriteria)
+    .draw();
+}
+
+function destroyStudentTable(){
+var table = $('#studentTable').DataTable();
+table.destroy();
+}
+
+
+
