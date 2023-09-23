@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Manager;
 using ManagerAbstructions.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.ReturnDtos;
 

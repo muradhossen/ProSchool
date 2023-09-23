@@ -1,14 +1,11 @@
 ﻿using ApiProject.Extentions;
 using AutoMapper;
 using ManagerAbstructions.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.CreateDtos;
 using Model.CriteriaDto;
-using Model.CriteriaDto.Setup;
 using Model.Entities;
 using Model.ReturnDtos;
-using Model.ReturnDtos.Setup;
 
 namespace ApiProject.Controllers
 {
