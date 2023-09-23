@@ -90,11 +90,6 @@ namespace Model.Pagging
             return new PagedList<TEntity>(items, count, pageNumber, pageSize);
         }
 
-        public static PagedList<TEntity> CreateRef(List<TEntity> source, ref int pageNumber, int pageSize, string selectedClientJobCode = "", string catalyzrPersonId = "", string skillId = "")
-        {
-            var count = source.Count();
-            var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-            return new PagedList<TEntity>(items, count, pageNumber, pageSize);
-        }
+ 
     }
 }

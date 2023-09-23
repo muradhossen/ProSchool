@@ -81,9 +81,9 @@ namespace ApiProject.Controllers
 
             var student = await _studentManager.GetByIdAsync(id);
 
-            if (student is null) return NotFound();             
+            if (student is null) return NotFound();
 
-            return Ok(_mapper.Map<StudentReturnDto>(student,opt => opt.AfterMap((src, des) =>
+            return Ok(_mapper.Map<StudentReturnDto>(student, opt => opt.AfterMap((src, des) =>
             {
                 des.Sl = 1;
             })));
@@ -99,7 +99,7 @@ namespace ApiProject.Controllers
                 var student = await _studentManager.GetByIdAsync(id);
 
                 if (student is null) return NotFound();
-                 
+
                 if (await _studentManager.RemoveAsync(student)) return Ok("Deleted.");
 
                 return BadRequest("Failed to delete bank");
@@ -110,11 +110,13 @@ namespace ApiProject.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("/api/students")]
         public async Task<IActionResult> Get([FromQuery] StudentCriteriaDto criteria)
         {
             try
             {
+                //await Task.Delay(5000);
+
                 if (criteria is null) return BadRequest("Invald input");
 
 
@@ -133,7 +135,12 @@ namespace ApiProject.Controllers
                 Response.AddPagination(students.CurrentPage, students.PageSize, students.TotalCount, students.TotalPages);
                 if (studentsReturnDto is not null)
                 {
-                    return Ok(studentsReturnDto);
+                    return Ok(new StudentPaginetedDto
+                    {
+                        Data = studentsReturnDto,
+                        RecordsTotal = students.TotalCount,
+                        RecordsFiltered = students.TotalCount
+                    });
                 }
 
                 return NotFound();
@@ -144,5 +151,28 @@ namespace ApiProject.Controllers
                 throw;
             }
         }
+
+
+        [HttpGet("/api/students/all")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var students = await _studentManager.GetAllStudentsAsync();
+
+                if (students is null)
+                {
+                    return NotFound();                   
+                }                 
+                return Ok(_mapper.Map<IList<StudentReturnDto>>(students));
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

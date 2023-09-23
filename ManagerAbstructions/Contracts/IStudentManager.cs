@@ -2,6 +2,7 @@
 using Model.CriteriaDto;
 using Model.Entities;
 using Model.Pagging;
+using Model.ReturnDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace ManagerAbstructions.Contracts
     public interface IStudentManager : IManager<Student>
     {
         Task<PagedList<Student>> GetByCriteria(StudentCriteriaDto criteria);
+        Task<IList<StudentReturnDto>> GetAllStudentsAsync();
     }
 }
